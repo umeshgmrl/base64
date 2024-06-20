@@ -1,29 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Base64 Encode/Decode</title>
-</head>
-<body>
-    <h1>Base64 Encode/Decode Tool</h1>
-    <textarea id="inputText" rows="4" cols="50">Enter text here...</textarea><br>
-    <button onclick="encodeText()">Encode</button>
-    <button onclick="decodeText()">Decode</button>
-    <h2>Result:</h2>
-    <textarea id="outputText" rows="4" cols="50" readonly></textarea>
 
-    <script>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Encode/Decode Tool</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(135deg, #6a11cb, #2471a3);
+        color: white;
+      }
+
+      .container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+        backdrop-filter: blur(5px);
+        font-size: 16px;
+        resize: vertical;
+      }
+
+      button {
+        padding: 12px 24px;
+        margin: 10px 5px;
+        border: none;
+        border-radius: 8px;
+        background: linear-gradient(135deg, #ff79da, #59cbff);
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s ease;
+      }
+
+      button:hover {
+        background: linear-gradient(135deg, #ff5acd, #40a3ff);
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Base64 Encode/Decode Tool</h1>
+      <textarea id="inputText" rows="4" cols="50"></textarea><br>
+      <button onclick="encodeText()">Encode</button>
+      <button onclick="decodeText()">Decode</button>
+      <h2>Result:</h2>
+      <textarea id="outputText" rows="4" cols="50" readonly></textarea>
+
+      <button onclick="copyToClipboard()">Copy Result</button>
+
+
+      <script>
         function encodeText() {
-            const input = document.getElementById('inputText').value;
-            const encoded = btoa(input);
-            document.getElementById('outputText').value = encoded;
+          const input = document.getElementById('inputText').value;
+          const encoded = btoa(input);
+          document.getElementById('outputText').value = encoded;
         }
 
         function decodeText() {
-            const input = document.getElementById('inputText').value;
-            const decoded = atob(input);
-            document.getElementById('outputText').value = decoded;
+          const input = document.getElementById('inputText').value;
+          const decoded = atob(input);
+          document.getElementById('outputText').value = decoded;
         }
-    </script>
-</body>
+
+        function copyToClipboard() {
+          const outputText = document.getElementById('outputText');
+          outputText.select();
+          outputText.setSelectionRange(0, 99999); // For mobile devices
+          document.execCommand('copy');
+          alert('Copied the text: ' + outputText.value);
+        }
+
+      </script>
+    </div>
+  </body>
+
 </html>
