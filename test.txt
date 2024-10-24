@@ -1,6 +1,7 @@
 ```handlebars
 {
   "First Name": "{{name}}",
-  // Adds id and age
+  "ID": {{id}},
+  "Age": {{age}}
 }
 ```
